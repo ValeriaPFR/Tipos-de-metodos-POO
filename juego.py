@@ -1,36 +1,37 @@
 from personaje import Personaje
 import random
 
-print("!!Bienvenido temerario jugador, a Gran Fantasía!! ")
+print("!!Bienvenido valiente jugador, a Gran Fantasía!! ")
 nombre = str(input("Ingrese Nombre de su personaje : "))
 
-# crea una instancia de la clase CrearPersonaje para el jugador con el nombre ingresado
+# Crear una instancia de la clase 'CrearPersonaje' para el jugador con el nombre ingresado
 p_jugador = Personaje(nombre)
 
-# muestra el estado inicial del jugador
+# Mostrar el estado inicial del jugador
 print(p_jugador.estado)
 
-# crea una instancia de la clase CrearPersonaje para crear el personaje orco
+# Crear una instancia de la clase 'CrearPersonaje' para crear el personaje orco
 p_orco = Personaje("Orco")
 
 probabilidad = p_jugador.probabilidad(p_orco)
+#Mensaje de aparición del orco
 print("-------------CUIDADO!!! HA APARECIDO UN ORCO-------------\n")
 p_jugador.dialogo_batalla(probabilidad)
-
+# Interacción de decisión 'Atacar o Huir'
 print("¿Deseas Atacar o Huir?")
 opcion=int(input("Ingresar 1 para Atacar o 2 para huir : "))
 
-
-# bucle principal del juego para ver si quierre atacar o no
+# Bucle principal del juego 
 while opcion == 1:
     
     num_aleatorio= round(random.uniform(0, 1), 2)
     
-    
-    # verifica si el número aleatorio es menor o igual a la probabilidad de ganar, y dependiendo de este se ve si gana o no la batalla
+    # Verificar si el número aleatorio es menor o igual a la probabilidad de ganar, 
+    # y dependiendo de este se ve si gana o no la batalla
     if num_aleatorio <= probabilidad:
         print("------------------------------------")
-        print("\nLe has ganado al orco, felicidades")
+        print("\nVenciste al orco, felicidades")
+        #Información al jugador de la recompensa
         print(f"{p_jugador.nombre} a ganado 50 puntos de experiencia\n")
         p_jugador.estado = 50
         p_orco.estado = -30
@@ -49,6 +50,3 @@ while opcion == 1:
     p_jugador.dialogo_batalla(probabilidad)
     print("¿Deseas Atacar o Huir?")
     opcion=int(input("Ingresar 1 para Atacar o 2 para huir : \n"))
-
-
-
